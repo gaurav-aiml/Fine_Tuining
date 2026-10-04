@@ -34,7 +34,7 @@ data/raw/
 data/clean/
 data/processed/
 data/tokenized/
-!data/pdfs/
+data/pdfs/
 .cache/
 ~/.cache/
 *.arrow

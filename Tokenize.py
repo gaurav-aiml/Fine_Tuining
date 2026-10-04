@@ -9,7 +9,7 @@ from datasets import load_dataset
 from transformers import AutoTokenizer
 
 BASE_DIR = Path(__file__).resolve().parent
-MODEL_NAME = "qwen3.5:0.8b"
+MODEL_NAME = "Qwen/Qwen3-0.6B"
 MODEL_REPO = "Qwen/Qwen3-0.6B"
 
 INPUT_FILE = BASE_DIR / "data" / "processed" / "training.jsonl"
@@ -18,14 +18,7 @@ MAX_LENGTH = 128
 
 
 def resolve_model_name(model_name: str | None = None) -> str:
-    candidate = (model_name or MODEL_NAME).strip()
-    aliases = {
-        "qwen3.5:0.8b": MODEL_REPO,
-        "qwen3.5:0.8B": MODEL_REPO,
-        "qwen3:0.6b": "Qwen/Qwen3-0.6B",
-        "unsloth/Qwen3.5-0.8B": "Qwen/Qwen3-0.6B",
-    }
-    return aliases.get(candidate, candidate)
+    return (model_name or MODEL_NAME).strip()
 
 
 def main():

@@ -9,20 +9,13 @@ ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-MODEL_NAME = "qwen3.5:0.8b"
+MODEL_NAME = "Qwen/Qwen3-0.6B"
 MODEL_REPO = "Qwen/Qwen3-0.6B"
 DATASET_DIR = ROOT / "data" / "tokenized"
 
 
 def resolve_model_name(model_name: str | None = None) -> str:
-    candidate = (model_name or MODEL_NAME).strip()
-    aliases = {
-        "qwen3.5:0.8b": MODEL_REPO,
-        "qwen3.5:0.8B": MODEL_REPO,
-        "qwen3:0.6b": "Qwen/Qwen3-0.6B",
-        "unsloth/Qwen3.5-0.8B": "Qwen/Qwen3-0.6B",
-    }
-    return aliases.get(candidate, candidate)
+    return (model_name or MODEL_NAME).strip()
 
 
 def ensure_python_version() -> None:
@@ -55,7 +48,7 @@ def ensure_dependencies() -> None:
     if missing:
         raise RuntimeError(
             "Missing required dependencies:\n- " + "\n- ".join(missing)
-            + "\nRun: python -m pip install -r requirements.txt"
+            + "\nRun: uv pip install -r requirements.txt"
         )
 
     print("Required Python dependencies OK")
